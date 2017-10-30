@@ -99,9 +99,13 @@ class ImageBlock(BasePageBlock):
 
         try:
             os.makedirs(settings.MEDIA_ROOT + "/" + path)
+        except OSError:
+            pass
+
+        try:
             fd = self.image.storage.open(
                 settings.MEDIA_ROOT + "/" + full_filename, 'wb')
-        except:
+        except OSError:
             fd = self.image.storage.open(full_filename, 'wb')
 
         for chunk in f.chunks():
@@ -196,7 +200,7 @@ class ImagePullQuoteBlock(BasePageBlock):
         path = "images/%04d/%02d/%02d/" % (now.year, now.month, now.day)
         try:
             os.makedirs(settings.MEDIA_ROOT + "/" + path)
-        except:
+        except OSError:
             pass
         full_filename = path + "%s.%s" % (basename, ext)
         fd = open(settings.MEDIA_ROOT + "/" + full_filename, 'wb')
