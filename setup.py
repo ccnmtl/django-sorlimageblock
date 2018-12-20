@@ -9,8 +9,9 @@ setup(
     url="https://github.com/ccnmtl/django-sorlimageblock",
     description="sorl-ified ImageBlock for django-pagetree.",
     install_requires=[
+        "django",
         "django-pagetree>=1.1.14",
-        "sorl==3.1",
+        "sorl>=3.1",
     ],
     scripts=[],
     license="GPL-2.0+",
